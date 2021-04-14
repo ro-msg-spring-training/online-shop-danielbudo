@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Location {
     @Id
     @Column(name = "id")
-    private Integer location;
+    private Integer id;
     private String name;
     @Embedded
     private Address address;
