@@ -5,15 +5,11 @@ import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.Converters.ProductConverter;
 import ro.msg.learning.shop.Converters.SupplierConverter;
 import ro.msg.learning.shop.DTOs.ProductDTO;
-import ro.msg.learning.shop.DTOs.SupplierDTO;
 import ro.msg.learning.shop.Entities.Product;
-import ro.msg.learning.shop.Entities.Supplier;
-import ro.msg.learning.shop.Repositories.ProductCategoryRepository;
 import ro.msg.learning.shop.Repositories.ProductRepository;
 import ro.msg.learning.shop.Services.Interfaces.ProductService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -25,14 +21,14 @@ public class ProductServiceImpl implements ProductService {
 
     // Read all products
     @Override
-    public List<Product> getAllProducts() {
-        return repository.findAll();
+    public List<ProductDTO> getAllProducts() {
+        return productConverter.convertEntityToDto(repository.findAll());
     }
 
     // Read product by ID
     @Override
-    public Product getProduct(Integer id){
-        return repository.findById(id).orElse(null);
+    public ProductDTO getProduct(Integer id){
+        return productConverter.entityToDto(repository.findById(id).orElse(null));
     }
 
     // Delete product by ID
@@ -43,7 +39,8 @@ public class ProductServiceImpl implements ProductService {
 
     // Create a new product
     @Override
-    public void addProduct(Product product) {
+    public void addProduct(ProductDTO productDTO) {
+        Product product = productConverter.dtoToEntity(productDTO);
         repository.save(product);
     }
 

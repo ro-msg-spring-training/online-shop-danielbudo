@@ -23,25 +23,17 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<ProductDTO> getAllProducts(){
-        // Use converter to return a list of DTOs from a list of entities
-        return this.
-                productConverter.convertEntityToDto(
-                productService.getAllProducts()
-        );
+        return this.productService.getAllProducts();
     }
 
     @GetMapping("/products/{id}")
     public ProductDTO getProduct(Integer id){
-        // Use the other method to convert a single entity to a DTO
-        return this.
-                productConverter.entityToDto(
-                productService.getProduct(id)
-        );
+        return this.productService.getProduct(id);
     }
 
     @PostMapping("/products")
     public ResponseEntity<Object> addProduct(@RequestBody ProductDTO productDTO){
-        this.productService.addProduct(productConverter.dtoToEntity(productDTO));
+        this.productService.addProduct(productDTO);
         return new ResponseEntity<>("Product successfully added", HttpStatus.CREATED);
     }
 

@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductService {
-    List<Product> getAllProducts();
-    Product getProduct(Integer id);
+    List<ProductDTO> getAllProducts();
+    ProductDTO getProduct(Integer id);
     void delete(Integer id);
-    void addProduct(Product product);
+    void addProduct(ProductDTO productDTO);
     void update(ProductDTO productDTO);
 }
