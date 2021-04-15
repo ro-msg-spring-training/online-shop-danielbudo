@@ -15,7 +15,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Autowired
     private ProductCategoryRepository repository;
-    private ProductCategoryConverter productCategoryConverter;
+    private ProductCategoryConverter productCategoryConverter = new ProductCategoryConverter();
 
     @Override
     public List<ProductCategoryDTO> getAllProductCategories() {

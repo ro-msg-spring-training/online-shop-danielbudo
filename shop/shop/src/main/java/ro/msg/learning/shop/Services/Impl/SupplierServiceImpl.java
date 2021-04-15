@@ -15,7 +15,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Autowired
     private SupplierRepository repository;
-    private SupplierConverter supplierConverter;
+    private SupplierConverter supplierConverter = new SupplierConverter();
 
     @Override
     public List<Supplier> getAllSuppliers() {

@@ -10,14 +10,15 @@ import ro.msg.learning.shop.Repositories.ProductRepository;
 import ro.msg.learning.shop.Services.Interfaces.ProductService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository repository;
-    private ProductConverter productConverter;
-    private SupplierConverter supplierConverter;
+    private ProductConverter productConverter = new ProductConverter();
+    private SupplierConverter supplierConverter = new SupplierConverter();
 
     // Read all products
     @Override
@@ -27,8 +28,8 @@ public class ProductServiceImpl implements ProductService {
 
     // Read product by ID
     @Override
-    public ProductDTO getProduct(Integer id){
-        return productConverter.entityToDto(repository.findById(id).orElse(null));
+    public Optional<ProductDTO> getProduct(Integer id){
+        return Optional.of(productConverter.entityToDto(repository.findById(id).orElse(null)));
     }
 
     // Delete product by ID

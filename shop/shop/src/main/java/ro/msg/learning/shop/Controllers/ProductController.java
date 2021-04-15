@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public ProductDTO getProduct(Integer id){
+    public Optional<ProductDTO> getProduct(Integer id){
         return this.productService.getProduct(id);
     }
 
