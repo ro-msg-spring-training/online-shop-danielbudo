@@ -18,8 +18,9 @@ public class Order {
     @JoinColumn(name = "shippedfrom_id", foreignKey = @ForeignKey(name="FK_CUSTOMERORDER_LOCATION"))
     private Location shippedFrom;
 
-    @Column(name="customer_id")
-    private Integer customer;
+    @ManyToOne
+    @JoinColumn(name="customer_id")
+    private Customer customer;
 
     @Column(name="created_at")
     private LocalDateTime createdAt;

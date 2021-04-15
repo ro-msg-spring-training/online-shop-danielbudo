@@ -3,6 +3,7 @@ package ro.msg.learning.shop.Entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
@@ -10,7 +11,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode @ToString
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable {
     @Id @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
