@@ -9,6 +9,7 @@ import ro.msg.learning.shop.Entities.Product;
 import ro.msg.learning.shop.Repositories.ProductRepository;
 import ro.msg.learning.shop.Services.Interfaces.ProductService;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository repository;
+    @Autowired
     private ProductConverter productConverter = new ProductConverter();
+    @Autowired
     private SupplierConverter supplierConverter = new SupplierConverter();
 
     // Read all products
@@ -28,8 +31,11 @@ public class ProductServiceImpl implements ProductService {
 
     // Read product by ID
     @Override
-    public Optional<ProductDTO> getProduct(Integer id){
-        return Optional.of(productConverter.entityToDto(repository.findById(id).orElse(null)));
+    public ProductDTO getProduct(Integer id){
+        Product product = repository.findById(id).orElse(null);
+        if(product == null)
+            throw new RuntimeException("No product with id " + id);
+        return productConverter.entityToDto(product);
     }
 
     // Delete product by ID

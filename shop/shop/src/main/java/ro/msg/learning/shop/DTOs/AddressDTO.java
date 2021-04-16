@@ -8,7 +8,6 @@ import java.io.Serializable;
 @AllArgsConstructor  @NoArgsConstructor
 @EqualsAndHashCode @ToString
 public class AddressDTO implements Serializable{
-    private Integer id;
     private String country;
     private String city;
     private String county;
