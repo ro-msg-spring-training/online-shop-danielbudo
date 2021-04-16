@@ -9,13 +9,15 @@ import java.io.Serializable;
 @Data @Builder
 @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode @ToString
-@IdClass(StockId.class)
 public class Stock implements Serializable {
-    @Id @ManyToOne
+    @EmbeddedId
+    private StockId stockId;
+
+    @ManyToOne @MapsId("productId")
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "FK_PRODUCT_STOCK"))
     private Product productId;
 
-    @Id @ManyToOne
+    @ManyToOne @MapsId("locationId")
     @JoinColumn(name = "location_id", foreignKey = @ForeignKey(name = "FK_LOCATION_STOCK"))
     private Location locationId;
     private Integer quantity;

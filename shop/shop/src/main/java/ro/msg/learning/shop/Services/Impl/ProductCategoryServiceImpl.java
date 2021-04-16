@@ -12,10 +12,10 @@ import java.util.List;
 
 @Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
-
     @Autowired
     private ProductCategoryRepository repository;
-    private ProductCategoryConverter productCategoryConverter;
+    @Autowired
+    private ProductCategoryConverter productCategoryConverter = new ProductCategoryConverter();
 
     @Override
     public List<ProductCategoryDTO> getAllProductCategories() {
@@ -27,4 +27,14 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         ProductCategory productCategory =productCategoryConverter.dtoToEntity(productCategoryDTO);
         repository.save(productCategory);
     }
+
+    @Override
+    public ProductCategoryDTO searchById(Integer id) {
+        ProductCategory productCategory = repository.findById(id).orElse(null);
+        if(productCategory == null)
+            throw new RuntimeException("No product category with id " + id);
+        return productCategoryConverter.entityToDto(productCategory);
+    }
+
+
 }

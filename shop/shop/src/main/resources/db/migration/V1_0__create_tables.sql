@@ -1,11 +1,11 @@
 CREATE TABLE Product_Category (
-                                  id integer,
+                                  id integer NOT NULL AUTO_INCREMENT PRIMARY KEY ,
                                   name varchar(256),
                                   description varchar(256)
 );
 
 CREATE TABLE Product (
-                         id integer,
+                         id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          name varchar(256),
                          description varchar(256),
                          price decimal(20, 2),
@@ -16,7 +16,7 @@ CREATE TABLE Product (
 );
 
 CREATE TABLE Supplier(
-                         id integer,
+                         id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          name varchar(256)
 );
 
@@ -27,13 +27,13 @@ CREATE TABLE Stock(
 );
 
 CREATE TABLE OrderDetail(
-                            order_id integer,
+                            order_id integer ,
                             product_id integer,
                             quantity integer
 );
 
 CREATE TABLE Customer_Order(
-                               id integer,
+                               id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                shippedFrom_id integer,
                                customer_id integer,
                                created_at datetime,
@@ -44,7 +44,7 @@ CREATE TABLE Customer_Order(
 );
 
 CREATE TABLE Location(
-                         id integer,
+                         id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          name varchar(60),
                          country varchar(60),
                          city varchar(60),
@@ -53,14 +53,14 @@ CREATE TABLE Location(
 );
 
 CREATE TABLE Revenue(
-                        id integer,
+                        id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         location_id integer,
                         date datetime,
                         sum decimal(20, 2)
 );
 
 CREATE TABLE Customer(
-                         id integer,
+                         id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          firstName varchar(256),
                          lastName varchar(256),
                          username varchar(256),
